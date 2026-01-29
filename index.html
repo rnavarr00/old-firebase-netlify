@@ -2,9 +2,9 @@
 <html lang="ca">
 <head>
   <meta charset="UTF-8">
-  <title>Llista de tasques (Firebase + Netlify)</title>
+  <title>Entrenador o filòsof?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 
   <!-- Firebase SDK (v9 mòduls compat) -->
@@ -12,19 +12,41 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore-compat.js"></script>
 </head>
 <body>
+
+  <div class="ranking-dropdown">
+    <button id="btn-ranking" onclick="toggleRanking()">
+      <i class="fa-solid fa-trophy"></i> RÀNKING
+    </button>
+    <div id="contingut-ranking" class="dropdown-content">
+      <ul id="llista-ranking"></ul>
+    </div>
+  </div>
+
   <div class="container">
-    <h1>Llista de tasques</h1>
+    <header>
+      <h1>¿Entrenador o Filòsof?</h1>
+      <div class="ratxa-wrapper">
+        Ratxa actual: <span id="ratxa-valor">0</span>
+      </div>
+    </header>
+    
+    <div id="joc">
+      <div id="carta-frase">
+        <p id="text-frase">Carregant preguntes...</p>
+        <p id="autor-info"></p>
+      </div>
 
-    <form id="form-tasca">
-      <input type="text" id="input-tasca" placeholder="Afegeix una tasca..." autocomplete="off" required>
-      <button type="submit">Afegir</button>
-    </form>
-
-    <ul id="llista-tasques"></ul>
-
-    <p class="info">
-      Les tasques es guarden a Firebase Firestore.
-    </p>
+      <div class="botons-joc">
+        <button onclick="comprovar('pensador')" class="btn-filosof">
+          <i class="fa-solid fa-brain"></i> FILÒSOF
+        </button>
+        <button onclick="comprovar('futbol')" class="btn-entrenador">
+          <i class="fa-solid fa-futbol"></i> ENTRENADOR
+        </button>
+      </div>
+      
+      <p id="missatge-feedback"></p>
+    </div>
   </div>
 
   <script src="app.js"></script>

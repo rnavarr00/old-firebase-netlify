@@ -1,99 +1,216 @@
-* {
-  box-sizing: border-box;
+/* --- Base y Tipografía --- */
+* { 
+  box-sizing: border-box; 
 }
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #f3f4f6;
+  font-family: 'Inter', 'Segoe UI', Helvetica, Arial, sans-serif;
+  background-color: #1a1a1a; /* Fondo oscuro sólido */
+  color: #eeeeee;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  padding: 1rem;
+  overflow-x: hidden;
 }
 
-.container {
+/* --- Rànquing Desplegable (Esquina Superior Derecha) --- */
+.ranking-dropdown {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 100;
+}
+
+#btn-ranking {
   background: #ffffff;
-  padding: 1.5rem;
-  border-radius: 0.75rem;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  width: 100%;
-  max-width: 450px;
-}
-
-h1 {
-  text-align: center;
-  margin-top: 0;
-  margin-bottom: 1rem;
-}
-
-form {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-#input-tasca {
-  flex: 1;
-  padding: 0.5rem 0.75rem;
-  border-radius: 999px;
-  border: 1px solid #d1d5db;
-  font-size: 0.95rem;
-}
-
-form button {
-  border: none;
-  border-radius: 999px;
-  padding: 0.5rem 1rem;
-  background: #2563eb;
-  color: white;
-  font-size: 0.95rem;
+  border: 3px solid #000;
+  color: #000;
+  padding: 10px 18px;
+  border-radius: 4px;
   cursor: pointer;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  box-shadow: 4px 4px 0px #000;
+  transition: all 0.1s;
 }
 
-form button:hover {
-  opacity: 0.95;
+#btn-ranking:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #000;
 }
 
-#llista-tasques {
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 55px;
+  background: #262626;
+  min-width: 240px;
+  padding: 0;
+  border-radius: 4px;
+  border: 3px solid #000;
+  box-shadow: 8px 8px 0px rgba(0,0,0,0.8);
+}
+
+.dropdown-show { 
+  display: block; 
+  animation: fadeIn 0.2s ease-out;
+}
+
+#llista-ranking {
   list-style: none;
-  padding-left: 0;
+  padding: 0;
   margin: 0;
 }
 
-.tasca {
+#llista-ranking li {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 0.5rem;
-  padding: 0.4rem 0;
-  border-bottom: 1px solid #e5e7eb;
+  padding: 12px 15px;
+  border-bottom: 2px solid #000;
+  font-size: 0.95rem;
+  font-weight: 600;
 }
 
-.tasca:last-child {
+#llista-ranking li:last-child {
   border-bottom: none;
 }
 
-.tasca span {
-  flex: 1;
-}
-
-.tasca-completada span {
-  text-decoration: line-through;
-  color: #9ca3af;
-}
-
-.boto-eliminar {
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  font-size: 0.8rem;
-  color: #b91c1c;
-}
-
-.info {
-  margin-top: 1rem;
-  font-size: 0.8rem;
-  color: #6b7280;
+/* --- Contenedor Principal --- */
+.container {
+  background: #262626;
+  padding: 2.5rem 1.5rem;
+  border: 4px solid #000;
+  width: 100%;
+  max-width: 550px;
   text-align: center;
+  box-shadow: 12px 12px 0px #000;
+}
+
+.ratxa-wrapper {
+  color: #ffcc00;
+  font-size: 1.4rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+  display: block;
+}
+
+/* --- Formato de la Frase (Tipo Cita Impactante) --- */
+#carta-frase {
+  background: #ffcc00; /* Amarillo vibrante */
+  color: #000;
+  padding: 3rem 1.5rem;
+  margin-bottom: 2rem;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 4px solid #000;
+  position: relative;
+  overflow: hidden;
+}
+
+#carta-frase::before {
+  content: "“";
+  position: absolute;
+  top: -20px;
+  left: 10px;
+  font-size: 10rem;
+  color: rgba(0,0,0,0.08);
+  font-family: serif;
+  line-height: 1;
+}
+
+#text-frase { 
+  font-size: 1.5rem; 
+  font-weight: 800; 
+  line-height: 1.25;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+}
+
+#autor-info { 
+  margin-top: 2rem; 
+  color: #000; 
+  font-weight: 900; 
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 0.85rem;
+  border-top: 3px solid #000;
+  display: inline-block;
+  padding-top: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+/* --- Botonera Lateral (Horizontal) --- */
+.botons-joc { 
+  display: flex; 
+  flex-direction: row; 
+  gap: 12px; 
+  width: 100%;
+}
+
+button.btn-filosof, button.btn-entrenador {
+  flex: 1;
+  border: 4px solid #000;
+  padding: 1.5rem 0.5rem;
+  font-weight: 900;
+  cursor: pointer;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.1s;
+  box-shadow: 6px 6px 0px #000;
+}
+
+.btn-filosof { 
+  background: #64748b; /* Gris azulado serio */
+  color: white; 
+}
+
+.btn-entrenador { 
+  background: #e11d48; /* Rojo deportivo */
+  color: white; 
+}
+
+button:hover {
+  filter: brightness(1.1);
+}
+
+button:active { 
+  transform: translate(3px, 3px); 
+  box-shadow: 2px 2px 0px #000; 
+}
+
+/* --- Feedback y Mensajes --- */
+#missatge-feedback { 
+  margin-top: 2rem; 
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-weight: 900;
+  min-height: 1.5rem;
+}
+
+/* Animaciones */
+@keyframes fadeIn { 
+  from { opacity: 0; transform: translateY(-10px); } 
+  to { opacity: 1; transform: translateY(0); } 
+}
+
+/* Ajuste para móviles pequeños */
+@media (max-width: 400px) {
+  .botons-joc {
+    flex-direction: column;
+  }
+  button.btn-filosof, button.btn-entrenador {
+    padding: 1.2rem;
+  }
 }
