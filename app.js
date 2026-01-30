@@ -56,7 +56,6 @@ window.comprovar = async (tipus) => {
   
   if (tipus === fraseActual.type) {
     ratxa++;
-    // Cambiamos innerText por innerHTML para que el navegador interprete la etiqueta <i>
     feedback.innerHTML = '<i class="fa-solid fa-circle-check"></i> Correcte!';
     feedback.style.color = "#10b981";
     ratxaDisplay.innerText = ratxa;
@@ -74,7 +73,6 @@ async function finalitzarPartida() {
   ratxaDisplay.innerText = 0;
 
   if (puntsObtinguts > 0) {
-    // Petit retard perquè l'usuari vegi qui ha fallat abans del prompt
     setTimeout(async () => {
       const nom = prompt(`Ratxa finalitzada: ${puntsObtinguts} punts. Nom per al rànquing:`);
       if (nom) {
@@ -91,7 +89,7 @@ async function finalitzarPartida() {
   }
 }
 
-// 5. Escolta del Rànquing (Top 5)
+// 5. Escolta del ranking
 function escoltarRanking() {
   rankingRef
     .orderBy("punts", "desc")
